@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Odd Sheep</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">The Odd Sheep</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><button class="login-btn" id="openLoginModal">Login</button></li>
+        <li><button class="signup-btn" id="openSignupModal">Sign Up</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to The Odd Sheep</h1>
+      <p>A unique space for the creatively different.</p>
+    </section>
+  </main>
+
+  <!-- 🔐 Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeLoginModal">&times;</span>
+      <h2>Login to The Odd Sheep</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+        <p id="loginMessage"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 📝 Sign-Up Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeSignupModal">&times;</span>
+      <h2>Create an Account</h2>
+      <form id="signupForm">
+        <input type="text" id="signupUsername" placeholder="Username" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+        <p id="signupMessage"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 The Odd Sheep. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
