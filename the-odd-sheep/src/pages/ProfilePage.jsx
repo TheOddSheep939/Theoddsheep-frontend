@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -7,23 +8,30 @@ export default function ProfilePage() {
   const [address, setAddress] = useState("");
   const [saved, setSaved] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return navigate("/", { replace: true });
+useEffect(() => {
+  axios.get("/auth/me")
+    .then(res => {
+      setUser(res.data);
+      setAddress(res.data.address || "");
+    })
+    .catch(() => {
+      navigate("/", { replace: true });
+    });
+}, []);
 
-    // Example payload (in a real app you'd decode JWT or fetch user data)
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(storedUser);
-    setAddress(storedUser?.address || "");
-  }, [navigate]);
+const handleSave = (e) => {
+  e.preventDefault();
+  axios.put("/api/user/profile/address", { address })
+    .then(res => {
+      setUser(res.data);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    })
+    .catch(() => {
+      alert("Failed to save address");
+    });
+};
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    const updatedUser = { ...user, address };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-  };
 
   return (
     <div className="profile-page">
