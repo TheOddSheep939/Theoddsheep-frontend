@@ -1,27 +1,31 @@
+// src/pages/ShopPage.jsx
 import React from "react";
+import ProductCard from "../components/ProductCard";
 
 export default function ShopPage() {
+  const products = [
+    {
+      id: 1,
+      name: "Deadpan Tee",
+      price: 10.0,
+      image: "/assets/images/sheep-deadpan.png",
+    },
+    {
+      id: 2,
+      name: "Dystopia Hoodie",
+      price: 18.0,
+      image: "/assets/images/sheep-dystopia.png",
+    },
+  ];
+
   return (
     <div className="shop-page">
-      <header>
-        <div className="logo"><a href="/">The Odd Sheep</a></div>
-      </header>
-
       <main>
         <h1>Shop</h1>
         <div className="product-grid">
-          <div className="product-card">
-            <img src="/assets/images/sheep-deadpan.png" alt="Deadpan Tee" />
-            <h3>Deadpan Tee</h3>
-            <p>BHD 10.00</p>
-            <button>Add to Cart</button>
-          </div>
-          <div className="product-card">
-            <img src="/assets/images/sheep-dystopia.png" alt="Dystopia Hoodie" />
-            <h3>Dystopia Hoodie</h3>
-            <p>BHD 18.00</p>
-            <button>Add to Cart</button>
-          </div>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </main>
 
