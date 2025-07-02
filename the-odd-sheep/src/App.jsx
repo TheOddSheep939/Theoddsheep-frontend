@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useCart } from "./context/CartContext";
 
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -18,6 +19,9 @@ import AccessibilityPage from "./pages/AccessibilityPage";
 import SustainabilityPage from "./pages/SustainabilityPage";
 import InclusionPage from "./pages/InclusionPage";
 import BrandStoryPage from "./pages/BrandStoryPage";
+import ViewCartPage from "./pages/ViewCartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -33,6 +37,7 @@ function App() {
 
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { cart } = useCart();
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -78,6 +83,9 @@ function App() {
           <Route path="/sustainability" element={<SustainabilityPage />} />
           <Route path="/inclusion" element={<InclusionPage />} />
           <Route path="/brand-story" element={<BrandStoryPage />} />
+          <Route path="/cart" element={<ViewCartPage />} />
+          <Route path="/checkout" element={Array.isArray(cart?.items) && cart.items.length > 0 ? <CheckoutPage /> : <Navigate to="/cart" />} />
+          <Route path="/confirmation" element={<OrderConfirmationPage />} />
         </Routes>
       </main>
       <Footer />

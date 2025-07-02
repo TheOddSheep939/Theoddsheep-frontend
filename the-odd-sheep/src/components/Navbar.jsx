@@ -37,6 +37,7 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn }) {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/shop">Shop</Link></li>
+              <Link to="/cart" className="nav-cart-link">View Cart</Link>
               <li><Link to="/contact">Contact</Link></li>
               {isLoggedIn ? (
                 <li><Link to="/profile">Profile</Link></li>
